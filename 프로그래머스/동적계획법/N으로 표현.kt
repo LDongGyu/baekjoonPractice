@@ -4,8 +4,8 @@ class Solution {
 
         var set = Array<MutableList<Int>>(9,{i-> mutableListOf()})
         var str = ""
-        for(i in 0..7){
-            for(j in 0..i){
+        for(i in 1..8){
+            for(j in 1..i){
                 str += N.toString()
             }
             set[i].add(str.toInt())
@@ -13,23 +13,26 @@ class Solution {
         }
 
         for(i in 1..8){
-            for(j in 0..i-1){
+            for(j in 1..i){
                 for(h in 0..set[j].lastIndex){
-                    for(k in 0..set[i-j-1].lastIndex){
-                        if(!set[i].contains(set[j][h] + set[i-j-1][k]))
-                            set[i].add(set[j][h] + set[i-j-1][k])
-                        if(!set[i].contains(set[j][h] - set[i-j-1][k]))
-                            set[i].add(set[j][h] - set[i-j-1][k])
-                        if(!set[i].contains(set[j][h] * set[i-j-1][k]))
-                            set[i].add(set[j][h] * set[i-j-1][k])
-                        if(set[i-j-1][k] != 0 && !set[i].contains(set[j][h] / set[i-j-1][k])){
-                            set[i].add(set[j][h] / set[i-j-1][k])
-                        }
+                    for(k in 0..set[i-j].lastIndex){
+                        if(!set[i].contains(set[j][h] + set[i-j][k]))
+                            set[i].add(set[j][h] + set[i-j][k])
+                        if(!set[i].contains(set[j][h] - set[i-j][k]))
+                            set[i].add(set[j][h] - set[i-j][k])
+                        if(!set[i].contains(set[i-j][k]-set[j][h]))
+                            set[i].add(set[i-j][k]-set[j][h])
+                        if(!set[i].contains(set[j][h] * set[i-j][k]))
+                            set[i].add(set[j][h] * set[i-j][k])
+                        if(set[i-j][k] != 0 && !set[i].contains(set[j][h] / set[i-j][k]))
+                            set[i].add(set[j][h] / set[i-j][k])
+                        if(set[j][h] != 0 && !set[i].contains(set[i-j][k] / set[j][h]))
+                            set[i].add(set[i-j][k] / set[j][h])
                     }
                 }
             }
             if(set[i].contains(number)){
-                answer = i+1
+                answer = i
                 break
             }
         }
