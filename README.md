@@ -25,5 +25,5 @@
 그래프 2/3
 
 **레벨별**
-Lv1 : Kotlin 올 클리어
+Lv1 : Kotlin 올 클리어, JAVA 1개 남음
 Lv2 : Kotlin 올 클리어
